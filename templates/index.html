@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Speech Emotion Recognition 🎤</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+</div>
+
+<div class="container">
+  <header>
+    <h1>🎤 Speech Emotion Recognition</h1>
+    <p class="subtitle">Upload a voice clip and let AI detect the emotion behind it ✨</p>
+  </header>
+
+  <div class="card" id="uploadCard">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">🎵</div>
+      <p class="drop-text">Drag & drop an audio file here</p>
+      <p class="drop-sub">or</p>
+      <label for="fileInput" class="upload-btn">Choose Audio File</label>
+      <input type="file" id="fileInput" accept=".wav,.mp3,.ogg,.m4a,.webm" hidden />
+      <p class="drop-hint">Supported: WAV, MP3, OGG, M4A · Max 10MB</p>
+    </div>
+
+    <div class="file-info" id="fileInfo" style="display:none;">
+      <span id="fileName"></span>
+      <button id="clearBtn" class="clear-btn">✕</button>
+    </div>
+
+    <audio id="audioPreview" controls style="display:none;"></audio>
+
+    <button id="analyzeBtn" class="analyze-btn" disabled>🔍 Analyze Emotion</button>
+  </div>
+
+  <div class="card result-card" id="resultCard" style="display:none;">
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Analyzing voice patterns...</p>
+    </div>
+
+    <div id="resultContent" style="display:none;">
+      <div class="result-main">
+        <div class="result-emoji" id="resultEmoji">😐</div>
+        <h2 class="result-emotion" id="resultEmotion">Neutral</h2>
+        <p class="result-confidence" id="resultConfidence">0% confidence</p>
+      </div>
+
+      <div class="prob-bars" id="probBars"></div>
+
+      <button class="analyze-btn secondary" id="tryAgainBtn">🔄 Try Another Clip</button>
+    </div>
+
+    <div id="errorContent" style="display:none;">
+      <div class="error-box">
+        <span class="error-icon">⚠️</span>
+        <p id="errorMessage">Something went wrong.</p>
+      </div>
+      <button class="analyze-btn secondary" id="errorRetryBtn">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Built with CNN + LSTM · MFCC Features · TensorFlow · Flask</p>
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
